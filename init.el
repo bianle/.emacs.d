@@ -31,7 +31,8 @@
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
-(require 'init-elpa)      ;; Machinery for installing required packages
+;;(require 'init-elpa)      ;; Machinery for installing required packages
+(require 'init-elpa-cn)
 (require 'init-exec-path) ;; Set up $PATH
 
 ;;----------------------------------------------------------------------------
@@ -52,51 +53,51 @@
 ;;(require 'init-frame-hooks)
 ;;(require 'init-xterm)
 (require 'init-themes)
-;;(require 'init-osx-keys)
+(require 'init-osx-keys)
 (require 'init-gui-frames)
 (require 'init-dired);; require `init-editing-utils`
-;;(require 'init-isearch)
-;;(require 'init-grep)
-;;(require 'init-uniquify)
+(require 'init-isearch)
+(require 'init-grep)
+(require 'init-uniquify);;make the buffer names distinguishable.
 (require 'init-ibuffer)
-;;(require 'init-flycheck)
-;;
-;;(require 'init-recentf)
+(require 'init-flycheck)
+
+(require 'init-recentf)
 (require 'init-smex);M-x interface with Ido-style fuzzy matching.
 ;;;; If you really prefer ido to ivy, change the comments below. I will
 ;;;; likely remove the ido config in due course, though.
 ;;;; (require 'init-ido)
 (require 'init-ivy);Incremental Vertical completYon
-;;(require 'init-hippie-expand)
-;;(require 'init-company)
+(require 'init-hippie-expand);;ac
+(require 'init-company)
 (require 'init-windows)
-;;(require 'init-sessions)
+(require 'init-sessions)
 (require 'init-fonts)
 ;;(require 'init-mmm)
 ;;
-(require 'init-editing-utils);;guide-key in it
+(require 'init-editing-utils);;avy,expand-region,guide-key,page-break-lines in it
 (require 'init-whitespace)
-;;(require 'init-fci)
+(require 'init-fci)
 ;;
 (require 'init-vc)
 ;;(require 'init-darcs)
 (require 'init-git)
 (require 'init-github)
 ;;
-;;(require 'init-projectile)
+(require 'init-projectile);;Project Interaction Library for Emacs
 ;;
 ;;(require 'init-compile)
-;;(require 'init-crontab)
+(require 'init-crontab)
 ;;(require 'init-textile)
 (require 'init-markdown)
 ;;(require 'init-csv)
 ;;(require 'init-erlang)
-;;(require 'init-javascript)
+(require 'init-javascript)
 ;;(require 'init-php)
 (require 'init-org)
 ;;(require 'init-nxml)
-;;(require 'init-html)
-;;(require 'init-css)
+(require 'init-html)
+(require 'init-css)
 ;;(require 'init-haml)
 (require 'init-python-mode)
 ;;(unless (version<= emacs-version "24.3")
@@ -106,9 +107,9 @@
 ;;(require 'init-rails)
 ;;(require 'init-sql)
 ;;
-;;(require 'init-paredit)
-;;(require 'init-lisp)
-;;(require 'init-slime)
+(require 'init-paredit)
+(require 'init-lisp)
+(require 'init-slime)
 ;;(unless (version<= emacs-version "24.2")
 ;;  (require 'init-clojure)
 ;;  (require 'init-clojure-cider))
@@ -128,10 +129,12 @@
 (require-package 'lua-mode)
 ;;(require-package 'htmlize)
 ;;(require-package 'dsvn)
-;;(when *is-a-mac*
-;;  (require-package 'osx-location))
-;;(require-package 'regex-tool)
 
+(when *is-a-mac*
+  (require-package 'osx-location))
+(require-package 'regex-tool)
+
+(require 'init-yasnippet)
 
 ;;----------------------------------------------------------------------------
 ;; Allow access from emacsclient
