@@ -1,0 +1,14 @@
+.emacs.desktop*
+.session
+.smex-items
+anaconda-mode
+history
+recentf
+auto-save-list
+custom.el
+var
+ditaa0_9.jar
+org-clock-save.el
+yasnippet
+elpa
+projectile-bookmarks.eld
