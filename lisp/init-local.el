@@ -161,9 +161,9 @@
 ;;------------------------------------------------------------------
 ;; elpa-mirror
 ;;------------------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
-(require 'elpa-mirror)
-(setq elpamr-default-output-directory "~/Dropbox/myelpa")
+;;(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
+;;(require 'elpa-mirror)
+;;(setq elpamr-default-output-directory "~/Dropbox/myelpa")
 
 ;;------------------------------------------------------------------
 ;; ox-freemind
@@ -174,9 +174,31 @@
 ;;------------------------------------------------------------------
 ;; keyfreq
 ;;------------------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/site-lisp/keyfreq")
-(require 'keyfreq)
-(keyfreq-mode 1)
-(keyfreq-autosave-mode 1)
+;;(add-to-list 'load-path "~/.emacs.d/site-lisp/keyfreq")
+;;(require 'keyfreq)
+;;(keyfreq-mode 1)
+;;(keyfreq-autosave-mode 1)
+
+
+
+;;
+;;http://svn.red-bean.com/repos/main/3bits/mobile_org_3bits.txt
+;;
+
+;; This is just an example.  The way you do it might be
+;; completely different, and that's fine, as long as you wind up
+;; with `org-agenda-files' set usefully.
+(setq org-directory "d:/bl/org")
+(custom-set-variables
+ '(org-agenda-files (quote ("~/org/work.org"
+                            "~/org/inbox.org"
+                            "~/org/hobbies.org"
+                            "~/org/people.org"
+                            "~/org/private/personal.org"))))
+
+(setq org-mobile-directory "/tunnel.ink:org")
+(setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
 
 (provide 'init-local)
+
+(message org-directory)
