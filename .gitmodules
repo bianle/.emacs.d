@@ -1,3 +1,9 @@
 [submodule "yasnippet/snippets"]
 	path = yasnippet/snippets
 	url = https://github.com/AndreaCrotti/yasnippet-snippets.git
+[submodule "site-lisp/keyfreq"]
+	path = site-lisp/keyfreq
+	url = https://github.com/dacap/keyfreq.git
+[submodule "site-lisp/elpa-mirror"]
+	path = site-lisp/elpa-mirror
+	url = https://github.com/redguardtoo/elpa-mirror.git
