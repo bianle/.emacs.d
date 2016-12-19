@@ -1,0 +1,4 @@
+#name : ruby
+#contributor: Bian Le <bianlelpqi@gmail.com>
+# --
+{% ruby ${1:Text}|${2:Text} %}$0

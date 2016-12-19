@@ -1,0 +1,10 @@
+#name : Jekyll Header
+#contributor: Bian Le <bianlelpqi@gmail.com>
+# --
+---
+layout: post
+title: ${1:Title}
+category: ${2:uncategorized}
+comments: false
+---
+$0
