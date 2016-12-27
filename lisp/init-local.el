@@ -7,6 +7,18 @@
   (hexo "~/git/blog/"))
 
 ;;------------------------------------------------------------------
+;; live-down
+;;------------------------------------------------------------------
+(require 'livedown)
+(global-set-key (kbd "M-RET") 'livedown-preview)
+
+;; (custom-set-variables
+;;  '(livedown-autostart nil) ; automatically open preview when opening markdown files
+;;  '(livedown-open t)        ; automatically open the browser window
+;;  '(livedown-port 1337)     ; port for livedown server
+;;  '(livedown-browser nil))  ; browser to use
+
+;;------------------------------------------------------------------
 ;; hexo kbd标签
 ;;------------------------------------------------------------------
 (defun hexo-tag-kbd()
@@ -46,9 +58,9 @@
   (insert "<!-- more -->")
   )
 
-;;-------------------------------------------------------------------------------------
-;;insert current time
-;;-------------------------------------------------------------------------------------
+;;------------------------------------------------------------------
+;; current-datetime
+;;------------------------------------------------------------------
 (defun current-datetime ()
   "Insert the current date"
   (interactive "*")
@@ -161,9 +173,9 @@
 ;;------------------------------------------------------------------
 ;; elpa-mirror
 ;;------------------------------------------------------------------
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
-;;(require 'elpa-mirror)
-;;(setq elpamr-default-output-directory "~/Dropbox/myelpa")
+(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
+(require 'elpa-mirror)
+(setq elpamr-default-output-directory "~/Dropbox/myelpa")
 
 ;;------------------------------------------------------------------
 ;; ox-freemind
@@ -174,10 +186,10 @@
 ;;------------------------------------------------------------------
 ;; keyfreq
 ;;------------------------------------------------------------------
-;;(add-to-list 'load-path "~/.emacs.d/site-lisp/keyfreq")
-;;(require 'keyfreq)
-;;(keyfreq-mode 1)
-;;(keyfreq-autosave-mode 1)
+(add-to-list 'load-path "~/.emacs.d/site-lisp/keyfreq")
+(require 'keyfreq)
+(keyfreq-mode 1)
+(keyfreq-autosave-mode 1)
 
 
 
@@ -188,17 +200,23 @@
 ;; This is just an example.  The way you do it might be
 ;; completely different, and that's fine, as long as you wind up
 ;; with `org-agenda-files' set usefully.
-(setq org-directory "d:/bl/org")
+(setq org-directory "~/Documents/MobileOrg")
 (custom-set-variables
- '(org-agenda-files (quote ("~/org/work.org"
-                            "~/org/inbox.org"
-                            "~/org/hobbies.org"
-                            "~/org/people.org"
-                            "~/org/private/personal.org"))))
+ '(org-agenda-files (quote ("~/Documents/MobileOrg/work.org"
+                            "~/Documents/MobileOrg/inbox.org"
+                            "~/Documents/MobileOrg/hobbies.org"
+                            "~/Documents/MobileOrg/people.org"
+                            "~/Documents/MobileOrg/private/personal.org"))))
 
-(setq org-mobile-directory "/tunnel.ink:org")
+(setq org-mobile-directory "/bl@tunnel.ink:org")
 (setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
 
-(provide 'init-local)
 
-(message org-directory)
+;;------------------------------------------------------------------
+;; stylus-mode
+;;------------------------------------------------------------------
+(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/stylus-mode"))
+(require 'stylus-mode)
+
+
+(provide 'init-local)

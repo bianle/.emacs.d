@@ -7,3 +7,9 @@
 [submodule "site-lisp/elpa-mirror"]
 	path = site-lisp/elpa-mirror
 	url = https://github.com/redguardtoo/elpa-mirror.git
+[submodule "site-lisp/emacs-livedown"]
+	path = site-lisp/emacs-livedown
+	url = https://github.com/shime/emacs-livedown.git
+[submodule "site-lisp/stylus-mode"]
+	path = site-lisp/stylus-mode
+	url = https://github.com/vladh/stylus-mode.git
