@@ -117,20 +117,44 @@
 (require 'markdown-mode)
 (define-key markdown-mode-map (kbd "<drag-n-drop>") 'md-dnd-func)
 
+(setq org-tag-alist '(("@work" . ?w) ("@home" . ?h) ("laptop" . ?l)))
+
 ;;------------------------------------------------------------------
 ;; org-capture
 ;;------------------------------------------------------------------
 (require 'org-capture)
-(setq org-default-notes-file (concat org-directory "~/Documents/org-capture/capture.org"))
+(setq org-directory "~/org/")
+(setq org-capture-directory (concat org-directory "org-capture/"))
+(setq org-default-notes-file (concat org-capture-directory "capture.org"))
 (define-key global-map "\C-cc" 'org-capture)
 
 (setq org-capture-templates
-      '(("s" "灵感" entry (file+headline "~/Documents/org-capture/spark.org" "灵感")
+      '(("s" "灵感" entry (file+headline (concat org-capture-directory "spark.org") "灵感")
          "* %?\n  %i\n")
-        ("j" "日记" entry (file+datetree "~/Documents/org-capture/journal.org")
+        ("j" "日记" entry (file+datetree (concat org-capture-directory "journal.org"))
          "* %?\n写于： [%<%Y-%m-%d %H:%M:%S>]\n  %i\n")
-        ("m" "会议" entry (file+datetree "~/Documents/org-capture/meeting.org")
+        ("m" "会议" entry (file+datetree (concat org-capture-directory "meeting.org"))
          "* %?\n写于： [%<%Y-%m-%d %H:%M:%S>]\n  %i\n")))
+
+
+;;
+;;http://svn.red-bean.com/repos/main/3bits/mobile_org_3bits.txt
+;;
+
+;; This is just an example.  The way you do it might be
+;; completely different, and that's fine, as long as you wind up
+;; with `org-agenda-files' set usefully.
+(setq org-directory "~/org/") ;;org主目录
+(custom-set-variables
+ '(org-agenda-files (quote ("todo.org"
+                            "private/personal.org"))))
+;;这里设置MobileOrg同步的文件如果不配置则默认同步org-agenda-files列表
+;;(setq org-mobile-files (list "office.org"
+;;                 "home.org"
+;;                 ))
+
+(setq org-mobile-directory "/bl@tunnel.ink:org") ;;服务器路径，格式： /[用户名@]<服务器>:<电脑的org文件将同步到的目录>。
+(setq org-mobile-inbox-for-pull "~/org/index.org");;手机同步用这个地址要写绝对路径
 
 
 ;;------------------------------------------------------------------
@@ -191,32 +215,43 @@
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
 
-
-
-;;
-;;http://svn.red-bean.com/repos/main/3bits/mobile_org_3bits.txt
-;;
-
-;; This is just an example.  The way you do it might be
-;; completely different, and that's fine, as long as you wind up
-;; with `org-agenda-files' set usefully.
-(setq org-directory "~/Documents/MobileOrg")
-(custom-set-variables
- '(org-agenda-files (quote ("~/Documents/MobileOrg/work.org"
-                            "~/Documents/MobileOrg/inbox.org"
-                            "~/Documents/MobileOrg/hobbies.org"
-                            "~/Documents/MobileOrg/people.org"
-                            "~/Documents/MobileOrg/private/personal.org"))))
-
-(setq org-mobile-directory "/bl@tunnel.ink:org")
-(setq org-mobile-inbox-for-pull (concat org-directory "/index.org"))
-
-
 ;;------------------------------------------------------------------
 ;; stylus-mode
 ;;------------------------------------------------------------------
 (add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/stylus-mode"))
 (require 'stylus-mode)
 
+;;------------------------------------------------------------------
+;; org-pomodoro
+;;------------------------------------------------------------------
+(require-package 'org-pomodoro)
+
+(defun notify-osx (title message)
+  (call-process "terminal-notifier"
+                nil 0 nil
+                "-group" "Emacs"
+                "-title" title
+                "-sender" "org.gnu.Emacs"
+                "-message" message
+                "-activate" "oeg.gnu.Emacs"))
+
+(add-hook 'org-pomodoro-finished-hook
+          (lambda ()
+            (notify-osx "Pomodoro completed!" "Time for a break.")))
+(add-hook 'org-pomodoro-break-finished-hook
+          (lambda ()
+            (notify-osx "Pomodoro Short Break Finished" "Ready for Another?")))
+(add-hook 'org-pomodoro-long-break-finished-hook
+          (lambda ()
+            (notify-osx "Pomodoro Long Break Finished" "Ready for Another?")))
+(add-hook 'org-pomodoro-killed-hook
+          (lambda ()
+            (notify-osx "Pomodoro Killed" "One does not simply kill a pomodoro!")))
+
+;;------------------------------------------------------------------
+;; osx-dictionary
+;;------------------------------------------------------------------
+(when *is-a-mac*
+  (require-package 'osx-dictionary))
 
 (provide 'init-local)
