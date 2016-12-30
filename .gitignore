@@ -11,3 +11,9 @@ ditaa0_9.jar
 org-clock-save.el
 elpa
 projectile-bookmarks.eld
+.bookmarks.el
+.mc-lists.el
+.org-id-locations
+eshell
+projectile.cache
+tramp
