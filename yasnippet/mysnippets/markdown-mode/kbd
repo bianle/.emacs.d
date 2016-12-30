@@ -1,0 +1,4 @@
+#name : hexo-tag-kbd
+#contributor: Bian Le <bianlelpqi@gmail.com>
+# --
+<% kbd ${1:key} %>$0
