@@ -129,11 +129,11 @@
 (define-key global-map "\C-cc" 'org-capture)
 
 (setq org-capture-templates
-      '(("s" "灵感" entry (file+headline (concat org-capture-directory "spark.org") "灵感")
+      '(("s" "灵感" entry (file+headline "~/org/org-capture/spark.org" "灵感")
          "* %?\n  %i\n")
-        ("j" "日记" entry (file+datetree (concat org-capture-directory "journal.org"))
+        ("j" "日记" entry (file+olp+datetree "~/org/org-capture/journal.org")
          "* %?\n写于： [%<%Y-%m-%d %H:%M:%S>]\n  %i\n")
-        ("m" "会议" entry (file+datetree (concat org-capture-directory "meeting.org"))
+        ("m" "会议" entry (file+olp+datetree "~/org/org-capture/meeting.org")
          "* %?\n写于： [%<%Y-%m-%d %H:%M:%S>]\n  %i\n")))
 
 
@@ -253,5 +253,100 @@
 ;;------------------------------------------------------------------
 (when *is-a-mac*
   (require-package 'osx-dictionary))
+
+
+;;------------------------------------------------------------------
+;; spacemacs-theme
+;;------------------------------------------------------------------
+(load-theme 'spacemacs-dark)
+
+;;------------------------------------------------------------------
+;; spaceline
+;;------------------------------------------------------------------
+;;(require 'spaceline-config)
+(setq ns-use-srgb-colorspace nil)
+;;(setq powerline-default-separator 'box)
+;;(spaceline-spacemacs-theme)
+
+(require 'spaceline-all-the-icons)
+(spaceline-all-the-icons-theme)
+
+(setq spaceline-all-the-icons-separator-type 'none)
+
+;;------------------------------------------------------------------
+;; linum-relative
+;;------------------------------------------------------------------
+;;(linum-on)
+(linum-relative-mode)
+(setq linum-relative-current-symbol "")
+
+
+;;------------------------------------------------------------------
+;; ivy-mode
+;;------------------------------------------------------------------
+(ivy-mode 1)
+(setq ivy-use-virtual-buffers t)
+(setq enable-recursive-minibuffers t)
+(global-set-key "\C-s" 'swiper)
+(global-set-key (kbd "C-c C-r") 'ivy-resume)
+(global-set-key (kbd "<f6>") 'ivy-resume)
+(global-set-key (kbd "M-x") 'counsel-M-x)
+(global-set-key (kbd "C-x C-f") 'counsel-find-file)
+(global-set-key (kbd "<f1> f") 'counsel-describe-function)
+(global-set-key (kbd "<f1> v") 'counsel-describe-variable)
+(global-set-key (kbd "<f1> l") 'counsel-find-library)
+(global-set-key (kbd "<f2> i") 'counsel-info-lookup-symbol)
+(global-set-key (kbd "<f2> u") 'counsel-unicode-char)
+(global-set-key (kbd "C-c g") 'counsel-git)
+(global-set-key (kbd "C-c j") 'counsel-git-grep)
+(global-set-key (kbd "C-c k") 'counsel-ag)
+(global-set-key (kbd "C-x l") 'counsel-locate)
+(global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
+(define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
+
+(require 'dimmer) ; unless installed as a package
+(dimmer-mode)
+(setq dimmer-fraction 0.5)
+
+;;------------------------------------------------------------------
+;; neotree
+;;------------------------------------------------------------------
+(require 'neotree)
+(global-set-key [f8] 'neotree-toggle)
+(setq neo-theme (if (display-graphic-p) 'icons 'arrow))
+
+
+;;------------------------------------------------------------------
+;; string-inflection
+;;------------------------------------------------------------------
+(require 'string-inflection)
+
+;; C-q C-u is the key bindings similar to Vz Editor.
+;;(global-unset-key (kbd "C-q"))
+(global-set-key (kbd "C-c C-u") 'my-string-inflection-cycle-auto)
+
+(defun my-string-inflection-cycle-auto ()
+  "switching by major-mode"
+  (interactive)
+  (cond
+   ;; for emacs-lisp-mode
+   ((eq major-mode 'emacs-lisp-mode)
+    (string-inflection-all-cycle))
+   ;; for python
+   ((eq major-mode 'python-mode)
+    (string-inflection-python-style-cycle))
+   ;; for java
+   ((eq major-mode 'java-mode)
+    (string-inflection-java-style-cycle))
+   (t
+    ;; default
+    (string-inflection-ruby-style-cycle))))
+
+(require 'all-the-icons)
+;;------------------------------------------------------------------
+;; expand-region.el
+;;------------------------------------------------------------------
+(require 'expand-region)
+(global-set-key (kbd "C-=") 'er/expand-region)
 
 (provide 'init-local)

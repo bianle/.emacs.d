@@ -70,7 +70,8 @@ locate PACKAGE."
 ;;; Fire up package.el
 
 (setq package-enable-at-startup nil)
-(package-initialize)
+;; Warning (package): Unnecessary call to ‘package-initialize’ in init file
+;;(package-initialize)
 
 
 
