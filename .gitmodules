@@ -13,3 +13,6 @@
 [submodule "site-lisp/stylus-mode"]
 	path = site-lisp/stylus-mode
 	url = https://github.com/vladh/stylus-mode.git
+[submodule "site-lisp/fsc.el"]
+	path = site-lisp/fsc.el
+	url = https://github.com/kuanyui/fsc.el.git

@@ -1,8 +1,20 @@
+;;; init-local.el --- Initialization file for Emacs
+;;; Commentary:
+;; Emacs Startup File --- initialization for Emacs
+
+;;------------------------------------------------------------------
+;; 不在新窗口打开
+;; https://github.com/topfunky/PeepOpen-Issues/issues/13
+;;------------------------------------------------------------------
+;;; Code:
+(setq ns-pop-up-frames nil)
+
 ;;------------------------------------------------------------------
 ;; hexo-mode
 ;;------------------------------------------------------------------
 (require-package 'hexo)
 (defun blog ()
+  "Open blog."
   (interactive)
   (hexo "~/git/blog/"))
 
@@ -22,7 +34,7 @@
 ;; hexo kbd标签
 ;;------------------------------------------------------------------
 (defun hexo-tag-kbd()
-  "insert a hexo tag"
+  "Insert a hexo tag."
   (interactive)
   (setq shortKbdMap '(("cmd" "Command")
                       ("opt" "Option")
@@ -41,7 +53,7 @@
 ;;------------------------------------------------------------------
 
 (defun hexo-tag-ruby()
-  "insert a hexo-tag-ruby"
+  "Insert a ruby tag."
   (interactive)
   (setq base (read-from-minibuffer "Base:"))
   (setq top (read-from-minibuffer "top:"))
@@ -53,7 +65,7 @@
 ;;------------------------------------------------------------------
 
 (defun hexo-more()
-  "insert more"
+  "Insert more."
   (interactive)
   (insert "<!-- more -->")
   )
@@ -62,7 +74,7 @@
 ;; current-datetime
 ;;------------------------------------------------------------------
 (defun current-datetime ()
-  "Insert the current date"
+  "Insert the current date."
   (interactive "*")
   (insert (format-time-string "%Y-%m-%d %H:%M:%S" (current-time)))
   )
@@ -71,7 +83,7 @@
 ;; 粘贴图片到七牛服务器
 ;;------------------------------------------------------------------
 (defun paste-image()
-  "paste image from clipboard"
+  "Paste image from clipboard."
   (interactive)
   (setq localBaseDir "~/.qiniu/bianle/")
   (call-process-shell-command (concat "mkdir -p " (concat localBaseDir "$(date +%Y/%m/%d)")) )
@@ -79,8 +91,8 @@
   (setq filename (concat localBaseDir relFilename ))
   (message (concat "/usr/local/bin/pngpaste " filename))
   (call-process-shell-command (concat "/usr/local/bin/pngpaste " filename))
-  (call-process-shell-command "~/sh/sync.sh")
-  (insert (concat "![](http://7xlbo3.com1.z0.glb.clouddn.com/" relFilename ")"))
+  (call-process-shell-command "/Users/bianle/sh/sync.sh")
+  (insert (concat "![](http://blimg.bovod.org/" relFilename ")"))
   (beginning-of-line)
   (forward-char 2)
   )
@@ -88,6 +100,8 @@
 ;; 图片拖拽到七牛服务器
 ;;------------------------------------------------------------------
 (defun md-dnd-func (event)
+  "Upload Image to Qiniu.
+Drag and drop EVENT."
   (interactive "e")
   (goto-char (nth 1 (event-start event)))
   (x-focus-frame nil)
@@ -105,7 +119,7 @@
       (call-process-shell-command (concat "mkdir -p " (concat localBaseDir "$(date +%Y/%m/%d)")) )
       (call-process-shell-command (format "cp %s %s" fname (concat localBaseDir "$(date +%Y/%m/%d)" "/") ))
       (call-process-shell-command "~/sh/sync.sh")
-      (insert (format "![](http://7xlbo3.com1.z0.glb.clouddn.com/%s)" relFilename))
+      (insert (format "![](http://blimg.bovod.org/%s)" relFilename))
       (beginning-of-line)
       (forward-char 2)
       ;;(org-display-inline-images t t))
@@ -178,7 +192,7 @@
 ;; 插入当前时间
 ;;------------------------------------------------------------------
 (defun insert-current-time ()
-  "Insert the current time"
+  "Insert the current time."
   (interactive)
   ;;(insert (format-time-string "%Y/%m/%d %H:%M:%S" (current-time))))
   (insert (format-time-string "%Y-%m-%d %H:%M:%S" (current-time))))
@@ -188,6 +202,7 @@
 ;; 格式化整个文件
 ;;------------------------------------------------------------------
 (defun indent-whole ()
+  "Fommat file."
   (interactive)
   (indent-region (point-min) (point-max))
   (message "format successfully"))
@@ -227,6 +242,9 @@
 (require-package 'org-pomodoro)
 
 (defun notify-osx (title message)
+  "Notify!
+TITLE: a title.
+MESSAGE: a msg."
   (call-process "terminal-notifier"
                 nil 0 nil
                 "-group" "Emacs"
@@ -251,9 +269,10 @@
 ;;------------------------------------------------------------------
 ;; osx-dictionary
 ;;------------------------------------------------------------------
-(when *is-a-mac*
-  (require-package 'osx-dictionary))
-
+;;(when *is-a-mac*
+;;  (require-package 'osx-dictionary))
+;;
+;;
 
 ;;------------------------------------------------------------------
 ;; spacemacs-theme
@@ -304,6 +323,11 @@
 (global-set-key (kbd "C-S-o") 'counsel-rhythmbox)
 (define-key minibuffer-local-map (kbd "C-r") 'counsel-minibuffer-history)
 
+(setq ivy-count-format "(%d/%d) ")
+
+;;------------------------------------------------------------------
+;; dimmer
+;;------------------------------------------------------------------
 (require 'dimmer) ; unless installed as a package
 (dimmer-mode)
 (setq dimmer-fraction 0.5)
@@ -326,7 +350,7 @@
 (global-set-key (kbd "C-c C-u") 'my-string-inflection-cycle-auto)
 
 (defun my-string-inflection-cycle-auto ()
-  "switching by major-mode"
+  "Switching by 'major-mode'."
   (interactive)
   (cond
    ;; for emacs-lisp-mode
@@ -349,4 +373,36 @@
 (require 'expand-region)
 (global-set-key (kbd "C-=") 'er/expand-region)
 
+
+;;------------------------------------------------------------------
+;; web-mode
+;;------------------------------------------------------------------
+(require 'web-mode)
+(add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.as[cp]x\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.erb\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.mustache\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.djhtml\\'" . web-mode))
+(add-to-list 'auto-mode-alist '("\\.swig\\'" . web-mode))
+
+
+;;------------------------------------------------------------------
+;; anzu
+;;------------------------------------------------------------------
+(global-anzu-mode +1)
+
+;;------------------------------------------------------------------
+;; fsc
+;;------------------------------------------------------------------
+(require 'makey)
+(require 'fsc)
+(global-set-key (kbd "C-c f") 'fsc)
+
+
 (provide 'init-local)
+
+(provide 'init-local)
+
+;;; init-local.el ends here
