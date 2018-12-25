@@ -16,3 +16,11 @@
 [submodule "site-lisp/fsc.el"]
 	path = site-lisp/fsc.el
 	url = https://github.com/kuanyui/fsc.el.git
+[submodule "site-lisp/powerline"]
+	path = site-lisp/powerline
+	url = https://github.com/milkypostman/powerline.git
+[submodule "site-lisp/sidebar.el"]
+	path = site-lisp/sidebar.el
+	url = https://github.com/sebastiencs/sidebar.el
+
+	
