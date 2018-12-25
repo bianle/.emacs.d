@@ -31,8 +31,10 @@
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
+(package-initialize)
 ;;(require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-elpa-cn)
+(setq package-archives '(("myelpa" . "C:/Users/bl/myelpa")))
 (require 'init-exec-path) ;; Set up $PATH
 
 ;;----------------------------------------------------------------------------
@@ -45,10 +47,11 @@
 ;;----------------------------------------------------------------------------
 
 (require-package 'wgrep);wgrep allows you to edit a grep buffer and apply those changes to the file buffer.
-(require-package 'project-local-variables);Set project-local variables from a file.
+;;(require-package 'project-local-variables);Set project-local variables from a file.
 (require-package 'diminish);Diminished modes are minor modes with no modeline display
 (require-package 'scratch);Mode-specific scratch buffers
-(require-package 'mwe-log-commands);log keyboard commands to buffer
+;;(require-package 'mwe-log-commands);log keyboard commands to buffer
+(require 'command-log-mode)
 
 ;;(require 'init-frame-hooks)
 ;;(require 'init-xterm)

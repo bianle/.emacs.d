@@ -212,7 +212,7 @@ Drag and drop EVENT."
 ;;------------------------------------------------------------------
 ;; elpa-mirror
 ;;------------------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
+;;(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
 (require 'elpa-mirror)
 (setq elpamr-default-output-directory "~/Dropbox/myelpa")
 
@@ -225,7 +225,7 @@ Drag and drop EVENT."
 ;;------------------------------------------------------------------
 ;; keyfreq
 ;;------------------------------------------------------------------
-(add-to-list 'load-path "~/.emacs.d/site-lisp/keyfreq")
+;;(add-to-list 'load-path "~/.emacs.d/site-lisp/keyfreq")
 (require 'keyfreq)
 (keyfreq-mode 1)
 (keyfreq-autosave-mode 1)
@@ -233,7 +233,7 @@ Drag and drop EVENT."
 ;;------------------------------------------------------------------
 ;; stylus-mode
 ;;------------------------------------------------------------------
-(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/stylus-mode"))
+;;(add-to-list 'load-path (expand-file-name "~/.emacs.d/site-lisp/stylus-mode"))
 (require 'stylus-mode)
 
 ;;------------------------------------------------------------------
@@ -287,7 +287,7 @@ MESSAGE: a msg."
 ;;(setq powerline-default-separator 'box)
 ;;(spaceline-spacemacs-theme)
 
-(require 'spaceline-all-the-icons)
+(require-package 'spaceline-all-the-icons)
 (spaceline-all-the-icons-theme)
 
 (setq spaceline-all-the-icons-separator-type 'none)
@@ -295,7 +295,9 @@ MESSAGE: a msg."
 ;;------------------------------------------------------------------
 ;; linum-relative
 ;;------------------------------------------------------------------
-;;(linum-on)
+(require-package 'linum-relative)
+(linum-on)
+
 (linum-relative-mode)
 (setq linum-relative-current-symbol "")
 
@@ -328,22 +330,23 @@ MESSAGE: a msg."
 ;;------------------------------------------------------------------
 ;; dimmer
 ;;------------------------------------------------------------------
-(require 'dimmer) ; unless installed as a package
+(require-package 'dimmer) ; unless installed as a package
 (dimmer-mode)
 (setq dimmer-fraction 0.5)
 
 ;;------------------------------------------------------------------
 ;; neotree
 ;;------------------------------------------------------------------
-(require 'neotree)
+(require-package 'neotree)
 (global-set-key [f8] 'neotree-toggle)
 (setq neo-theme (if (display-graphic-p) 'icons 'arrow))
 
+(require-package 'all-the-icons)
 
 ;;------------------------------------------------------------------
 ;; string-inflection
 ;;------------------------------------------------------------------
-(require 'string-inflection)
+;;(require 'string-inflection)
 
 ;; C-q C-u is the key bindings similar to Vz Editor.
 ;;(global-unset-key (kbd "C-q"))
@@ -366,7 +369,7 @@ MESSAGE: a msg."
     ;; default
     (string-inflection-ruby-style-cycle))))
 
-(require 'all-the-icons)
+
 ;;------------------------------------------------------------------
 ;; expand-region.el
 ;;------------------------------------------------------------------
@@ -377,7 +380,7 @@ MESSAGE: a msg."
 ;;------------------------------------------------------------------
 ;; web-mode
 ;;------------------------------------------------------------------
-(require 'web-mode)
+(require-package 'web-mode)
 (add-to-list 'auto-mode-alist '("\\.phtml\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.tpl\\.php\\'" . web-mode))
 (add-to-list 'auto-mode-alist '("\\.[agj]sp\\'" . web-mode))
@@ -389,19 +392,16 @@ MESSAGE: a msg."
 
 
 ;;------------------------------------------------------------------
-;; anzu
+;; anzu - show result nums
 ;;------------------------------------------------------------------
-(global-anzu-mode +1)
+;;(global-anzu-mode +1)
 
 ;;------------------------------------------------------------------
 ;; fsc
 ;;------------------------------------------------------------------
-(require 'makey)
+(require-package 'makey)
 (require 'fsc)
 (global-set-key (kbd "C-c f") 'fsc)
-
-
-(provide 'init-local)
 
 (provide 'init-local)
 
