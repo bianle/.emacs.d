@@ -26,4 +26,4 @@
 	
 [submodule "site-lisp/command-log-mode"]
 	path = site-lisp/command-log-mode
-	url = https://github.com/lewang/command-log-mode.git
+	url = https://github.com/lewang/command-log-mode

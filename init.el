@@ -34,7 +34,7 @@
 (package-initialize)
 ;;(require 'init-elpa)      ;; Machinery for installing required packages
 (require 'init-elpa-cn)
-(setq package-archives '(("myelpa" . "C:/Users/bl/myelpa")))
+(setq package-archives '(("myelpa" . "~/Dropbox/myelpa")))
 (require 'init-exec-path) ;; Set up $PATH
 
 ;;----------------------------------------------------------------------------
