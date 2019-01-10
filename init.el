@@ -31,10 +31,16 @@
 (require 'init-utils)
 (require 'init-site-lisp) ;; Must come before elpa, as it may provide package.el
 ;; Calls (package-initialize)
-(package-initialize)
-;;(require 'init-elpa)      ;; Machinery for installing required packages
-(require 'init-elpa-cn)
-(setq package-archives '(("myelpa" . "~/Dropbox/myelpa")))
+
+(require 'init-elpa)      ;; Machinery for installing required packages
+;;(require 'init-elpa-cn)
+;;(setq package-archives '(("myelpa" . "~/Dropbox/myelpa")))
+;;(package-initialize)
+
+(require 'init-melpa)
+
+
+
 (require 'init-exec-path) ;; Set up $PATH
 
 ;;----------------------------------------------------------------------------

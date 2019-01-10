@@ -213,8 +213,8 @@ Drag and drop EVENT."
 ;; elpa-mirror
 ;;------------------------------------------------------------------
 ;;(add-to-list 'load-path "~/.emacs.d/site-lisp/elpa-mirror")
-(require 'elpa-mirror)
-(setq elpamr-default-output-directory "~/Dropbox/myelpa")
+;;(require 'elpa-mirror)
+;;(setq elpamr-default-output-directory "~/Dropbox/myelpa")
 
 ;;------------------------------------------------------------------
 ;; ox-freemind
@@ -277,31 +277,65 @@ MESSAGE: a msg."
 ;;------------------------------------------------------------------
 ;; spacemacs-theme
 ;;------------------------------------------------------------------
-(require-package 'spacemacs-theme)
-(load-theme 'spacemacs-dark)
+;;(require-package 'spacemacs-theme)
+;;(load-theme 'spacemacs-dark)
+
+;;------------------------------------------------------------------
+;; doom-modeline
+;;------------------------------------------------------------------
+(require-package 'doom-modeline)
+(doom-modeline-init)
+
+;;------------------------------------------------------------------
+;; doom-themes
+;;------------------------------------------------------------------
+(require-package 'doom-themes)
+;; Global settings (defaults)
+(setq doom-themes-enable-bold t    ; if nil, bold is universally disabled
+      doom-themes-enable-italic t) ; if nil, italics is universally disabled
+
+;; Load the theme (doom-one, doom-molokai, etc); keep in mind that each theme
+;; may have their own settings.
+(load-theme 'doom-solarized-light t)
+
+;; Enable flashing mode-line on errors
+(doom-themes-visual-bell-config)
+
+;; Enable custom neotree theme (all-the-icons must be installed!)
+(doom-themes-neotree-config)
+;; or for treemacs users
+(doom-themes-treemacs-config)
+
+;; Corrects (and improves) org-mode's native fontification.
+(doom-themes-org-config)
 
 ;;------------------------------------------------------------------
 ;; spaceline
 ;;------------------------------------------------------------------
-;;(require 'spaceline-config)
-(setq ns-use-srgb-colorspace nil)
+;;(setq ns-use-srgb-colorspace nil)
 ;;(setq powerline-default-separator 'box)
-;;(spaceline-spacemacs-theme)
 
-(require-package 'spaceline-all-the-icons)
-(spaceline-all-the-icons-theme)
+;;(require-package 'spaceline-all-the-icons)
+;;(spaceline-all-the-icons-theme)
+;;(spaceline-all-the-icons--setup-anzu)            ;; Enable anzu searching
+;;(spaceline-all-the-icons--setup-package-updates) ;; Enable package update indicator
+;;(spaceline-all-the-icons--setup-git-ahead)       ;; Enable # of commits ahead of upstream in git
+;;(spaceline-all-the-icons--setup-paradox)         ;; Enable Paradox mode line
+;;(spaceline-all-the-icons--setup-neotree)         ;; Enable Neotree mode line
 
-(setq spaceline-all-the-icons-separator-type 'none)
+;;(require-package 'spaceline-all-the-icons)
+;;(spaceline-all-the-icons-theme)
+
+;;(setq spaceline-all-the-icons-separator-type 'none)
 
 ;;------------------------------------------------------------------
 ;; linum-relative
 ;;------------------------------------------------------------------
 (require-package 'linum-relative)
-(linum-on)
 
-(linum-relative-mode)
 (setq linum-relative-current-symbol "")
-
+;; Use `display-line-number-mode` as linum-mode's backend for smooth performance
+(setq linum-relative-backend 'display-line-numbers-mode)
 
 ;;------------------------------------------------------------------
 ;; ivy-mode
