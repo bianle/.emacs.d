@@ -48,6 +48,14 @@
   (insert (concat "{% kbd " (if k k ipt) " %}" ))
   )
 
+(defun hexo-tag-aplayer ()
+  "Insert aplayer tag."
+  (interactive)
+  (setq title (read-from-minibuffer "Title:"))
+  (setq author (read-from-minibuffer "Author:"))
+  (insert (concat "{% aplayer \"" title "\" \"" author "\" \"http://blimg.bovod.org/music/" title "-" author ".mp3\" \"http://blimg.bovod.org/music/" title "-" author ".jpg\" %}"))
+  )
+
 ;;------------------------------------------------------------------
 ;; hexo-tag-ruby
 ;;------------------------------------------------------------------
@@ -437,6 +445,24 @@ MESSAGE: a msg."
 (require-package 'makey)
 (require 'fsc)
 (global-set-key (kbd "C-c f") 'fsc)
+
+;;------------------------------------------------------------------
+;; elpy
+;;------------------------------------------------------------------
+;;(require-package 'elpy)
+;;(elpy-enable)
+
+;;------------------------------------------------------------------
+;; virtualenvwrapper
+;;------------------------------------------------------------------
+
+(require-package 'virtualenvwrapper)
+(venv-initialize-interactive-shells) ;; if you want interactive shell support
+(venv-initialize-eshell) ;; if you want eshell support
+;; note that setting `venv-location` is not necessary if you
+;; use the default location (`~/.virtualenvs`), or if the
+;; the environment variable `WORKON_HOME` points to the right place
+;; (setq venv-location "/path/to/your/virtualenvs/")
 
 (provide 'init-local)
 

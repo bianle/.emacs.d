@@ -93,7 +93,7 @@
 (require 'init-git)
 (require 'init-github)
 ;;
-(require 'init-projectile);;Project Interaction Library for Emacs
+(require 'init-projectile) ;;Project Interaction Library for Emacs
 ;;
 ;;(require 'init-compile)
 (require 'init-crontab)
